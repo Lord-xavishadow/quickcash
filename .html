@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>QuickCash - Create Account</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="form-box">
+      <h2>Register on QuickCash</h2>
+      <form id="signupForm" onsubmit="registerUser(); return false;">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="John Doe" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="example@email.com" required>
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="08012345678" required>
+
+        <label for="usertype">Who are you?</label>
+        <select id="usertype" required>
+          <option value="">-- Select --</option>
+          <option value="student">Student</option>
+          <option value="employed">Employed</option>
+          <option value="unemployed">Unemployed</option>
+        </select>
+
+        <button type="submit">Create Account</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function registerUser() {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const userType = document.getElementById('usertype').value;
+
+      if (!name || !email || !phone || !userType) {
+        alert("All fields are required.");
+        return;
+      }
+
+      localStorage.setItem("qc_name", name);
+      localStorage.setItem("qc_email", email);
+      localStorage.setItem("qc_phone", phone);
+      localStorage.setItem("qc_user_type", userType);
+      localStorage.setItem("qc_balance", "0");
+      localStorage.setItem("qc_last_bonus", "");
+
+      window.location.href = "dashboard.html";
+    }
+  </script>
+</body>
+</html>

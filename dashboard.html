@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>QuickCash - Dashboard</title>
+  <link rel="stylesheet" href="dash.css">
+</head>
+<body>
+
+  <!-- Top Navbar -->
+  <div class="topbar">
+    <div class="brand">QuickCash</div>
+    <div class="nav">
+      <button onclick="showSection('home')">Home</button>
+      <button onclick="showSection('courses')">Courses</button>
+      <button onclick="showSection('bonuses')">Bonuses</button>
+      <button onclick="showSection('withdraw')">Withdraw</button>
+      <button onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="container">
+
+    <!-- Section: Home / Wallet -->
+    <div id="home" class="section">
+      <h2>Welcome, <span id="username"></span></h2>
+
+      <!-- Balance Card -->
+      <div class="card">
+        <h3>Wallet Balance</h3>
+        <p>₦<span id="balance">0</span></p>
+      </div>
+
+      <!-- Platform Stats -->
+      <div class="section stats">
+        <h3>Platform Overview</h3>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <p class="stat-label">Total Users</p>
+            <p class="stat-value">22</p>
+          </div>
+          <div class="stat-box">
+            <p class="stat-label">Bonuses Claimed</p>
+            <p class="stat-value">₦183,000</p>
+          </div>
+          <div class="stat-box">
+            <p class="stat-label">Courses Enrolled</p>
+            <p class="stat-value">41</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section: Courses -->
+    <div id="courses" class="section" style="display:none;">
+      <h3>Available Courses</h3>
+      <button onclick="prank('Forex Trading Masterclass')">Forex Trading</button>
+      <button onclick="prank('Affiliate Marketing Blueprint')">Affiliate Marketing</button>
+      <button onclick="prank('Crypto Profits 101')">Crypto Profits</button>
+      <button onclick="prank('E-commerce Crash Course')">E-commerce</button>
+    </div>
+
+    <!-- Section: Bonuses -->
+    <div id="bonuses" class="section" style="display:none;">
+      <h3>Bonuses</h3>
+      <button onclick="claimBonus()">Claim ₦1000 Daily Bonus</button>
+      <button onclick="shareWhatsapp()">Share to WhatsApp & Earn ₦2000</button>
+    </div>
+
+    <!-- Section: Withdraw -->
+    <div id="withdraw" class="section" style="display:none;">
+      <h3>Withdraw Funds</h3>
+      <input type="number" id="withdrawAmount" placeholder="Enter amount (₦)">
+      <button onclick="withdraw()">Withdraw</button>
+    </div>
+
+  </div>
+
+  <!-- Prank Popup -->
+  <div class="popup" id="popup">
+    <p id="popup-message"></p>
+    <button onclick="closePopup()">Close</button>
+  </div>
+
+  <!-- JavaScript Logic -->
+  <script>
+    // Load user data
+    document.getElementById("username").innerText = localStorage.getItem("qc_name") || "Guest";
+    document.getElementById("balance").innerText = localStorage.getItem("qc_balance") || "0";
+
+    function showSection(id) {
+      const sections = document.querySelectorAll(".section");
+      sections.forEach(section => section.style.display = "none");
+      document.getElementById(id).style.display = "block";
+    }
+
+    function updateBalanceDisplay() {
+      document.getElementById("balance").innerText = localStorage.getItem("qc_balance");
+    }
+
+    function claimBonus() {
+      const today = new Date().toDateString();
+      const lastClaim = localStorage.getItem("qc_last_bonus");
+
+      if (today === lastClaim) {
+        alert("You've already claimed your bonus today.");
+        return;
+      }
+
+      let balance = parseInt(localStorage.getItem("qc_balance") || "0");
+      balance += 1000;
+      localStorage.setItem("qc_balance", balance);
+      localStorage.setItem("qc_last_bonus", today);
+      updateBalanceDisplay();
+      alert("₦1000 Bonus added to your account!");
+    }
+
+    function shareWhatsapp() {
+      let balance = parseInt(localStorage.getItem("qc_balance") || "0");
+      balance += 2000;
+      localStorage.setItem("qc_balance", balance);
+      updateBalanceDisplay();
+      alert("Shared! ₦2000 bonus added.");
+    }
+
+    function withdraw() {
+      const amount = parseInt(document.getElementById("withdrawAmount").value);
+      const type = localStorage.getItem("qc_user_type");
+
+      if (!amount || amount <= 0) {
+        alert("Please enter a valid amount.");
+        return;
+      }
+
+      let message = "";
+      switch(type) {
+        case "student":
+          message = "You dey withdraw student package? 😂 Omo na prank!";
+          break;
+        case "employed":
+          message = "With salary and still believe this? Na prank o 💀";
+          break;
+        case "unemployed":
+          message = "No job and still fall for am? Big L 😭";
+          break;
+        default:
+          message = "Oga this site no real abeg 😭😂";
+      }
+
+      showPopup(message);
+    }
+
+    function prank(courseName) {
+      const msg = `You clicked "${courseName}"\n\nBro 😂 This na prank site oo!`;
+      showPopup(msg);
+    }
+
+    function showPopup(msg) {
+      document.getElementById("popup-message").innerText = msg;
+      document.getElementById("popup").style.display = "block";
+    }
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = "login.html";
+    }
+  </script>
+
+</body>
+</html>
