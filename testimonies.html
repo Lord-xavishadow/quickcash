@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>QuickCash Testimonials</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+      color: #fff;
+    }
+
+    .header {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+      font-size: 2rem;
+      font-weight: bold;
+      animation: fadeIn 1s ease-out;
+    }
+
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(8px);
+      animation: slideUp 0.6s ease;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .avatar {
+      width: 60px;
+      height: 60px;
+      background: #fff;
+      color: #2a5298;
+      border-radius: 50%;
+      font-weight: bold;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .name {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .text {
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media screen and (max-width: 600px) {
+      .header {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">📣 What People Are Saying</div>
+
+  <div class="testimonials">
+    <div class="card">
+      <div class="avatar">JD</div>
+      <div class="name">John Damilola</div>
+      <div class="text">I made ₦5,000 just by sharing a link to 5 WhatsApp groups. QuickCash is too real!🔥</div>
+    </div>
+
+    <div class="card">
+      <div class="avatar">AK</div>
+      <div class="name">Aisha Kareem</div>
+      <div class="text">I thought it was fake, but after logging in and claiming bonuses, my balance showed ₦3,000! 🙌</div>
+    </div>
+
+    <div class="card">
+      <div class="avatar">TO</div>
+      <div class="name">Tochukwu Okoro</div>
+      <div class="text">I’m a student and I just got ₦1,000 bonus daily for logging in. I fit chop shawarma this weekend. 😂</div>
+    </div>
+
+    <div class="card">
+      <div class="avatar">RM</div>
+      <div class="name">Ruth Mbah</div>
+      <div class="text">Shared my link and boom — referrals just dey land. This QuickCash make sense die! 👏</div>
+    </div>
+
+    <div class="card">
+      <div class="avatar">UL</div>
+      <div class="name">Uche Lawal</div>
+      <div class="text">I don’t know how it works but my balance dey grow. I don’t even wan withdraw, just dey enjoy vibes 😎</div>
+    </div>
+
+    <div class="card">
+      <div class="avatar">FA</div>
+      <div class="name">Fatima Abdullahi</div>
+      <div class="text">Best online platform I don enter. Na only withdrawal dey somehow 😂 but everything else legit.</div>
+    </div>
+  </div>
+
+</body>
+</html>
